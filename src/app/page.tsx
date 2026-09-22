@@ -816,8 +816,8 @@ export default function Home() {
                   Cote rentrée
                   <input
                     type="number"
-                    min="1"
-                    step="0.01"
+                    min="0"
+                    step="any"
                     value={form.odds}
                     onChange={(event) => updateForm("odds", Number(event.target.value))}
                     className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
