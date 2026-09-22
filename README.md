@@ -1,5 +1,16 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Supabase
+
+Pour enregistrer les paris dans la base de données, exécute le fichier `supabase/schema.sql` dans le SQL Editor de Supabase, puis ajoute un fichier `.env.local` avec:
+
+```bash
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+Le frontend passe par l'API interne `/api/promos`, donc la clé service role reste côté serveur.
+
 ## Getting Started
 
 First, run the development server:
