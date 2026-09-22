@@ -516,13 +516,19 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-6 text-stone-50 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
-        <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,190,74,0.22),rgba(255,98,54,0.24)_28%,rgba(110,29,18,0.3)_54%,rgba(16,10,9,0.96)_100%)] shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur">
-          <div className="grid gap-8 p-6 lg:grid-cols-[1.1fr_0.9fr] lg:p-10">
+    <main className="relative min-h-screen overflow-hidden px-4 py-8 text-stone-50 sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-[-8%] top-[-8%] h-80 w-80 rounded-full bg-amber-300/10 blur-3xl" />
+        <div className="absolute right-[8%] top-[4%] h-96 w-96 rounded-full bg-sky-400/10 blur-3xl" />
+        <div className="absolute bottom-[-10%] left-[28%] h-96 w-96 rounded-full bg-emerald-400/8 blur-3xl" />
+      </div>
+
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <section className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(250,204,21,0.08)_28%,rgba(15,19,26,0.95)_70%,rgba(7,10,15,0.98)_100%)] shadow-[0_36px_110px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+          <div className="grid gap-10 p-6 lg:grid-cols-[1.05fr_0.95fr] lg:p-10">
             <div className="flex flex-col justify-between gap-8">
               <div className="flex items-center gap-5">
-                <div className="relative h-20 w-20 overflow-hidden rounded-full border border-amber-300/45 bg-white shadow-[0_0_0_10px_rgba(255,255,255,0.06)] sm:h-24 sm:w-24">
+                <div className="relative h-20 w-20 overflow-hidden rounded-full border border-amber-200/40 bg-white shadow-[0_0_0_10px_rgba(255,255,255,0.04)] sm:h-24 sm:w-24">
                   <Image src="/logo.png" alt="Les Bons Plans de Tonton" fill priority className="object-cover" />
                 </div>
                 <div>
@@ -536,16 +542,19 @@ export default function Home() {
               </div>
 
               <div className="max-w-2xl space-y-4">
+                <p className="max-w-xl text-base leading-7 text-stone-200/80 sm:text-lg">
+                  Un tableau de bord plus lisible pour suivre les boosts, les promos et le résultat net sans bruit visuel inutile.
+                </p>
                 <div className="grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,213,123,0.16),rgba(255,255,255,0.04))] p-4">
+                  <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.05] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                     <p className="text-xs uppercase tracking-[0.3em] text-stone-300/70">Conversion</p>
                     <p className="mt-2 text-2xl font-black text-amber-200">{formatPercent.format(CONVERSION_RATE)}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,144,72,0.14),rgba(255,255,255,0.04))] p-4">
+                  <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.05] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                     <p className="text-xs uppercase tracking-[0.3em] text-stone-300/70">Lignes suivies</p>
                     <p className="mt-2 text-2xl font-black text-white">{formatInteger.format(promos.length)}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,90,77,0.14),rgba(255,255,255,0.04))] p-4">
+                  <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.05] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                     <p className="text-xs uppercase tracking-[0.3em] text-stone-300/70">Bilan net</p>
                     <p className={`mt-2 text-2xl font-black ${totals.global.net >= 0 ? "text-emerald-300" : "text-rose-300"}`}>
                       {formatCurrency.format(totals.global.net)}
@@ -555,8 +564,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid gap-4 rounded-[1.75rem] border border-white/10 bg-black/25 p-5">
-              <div className="rounded-[1.5rem] border border-amber-300/20 bg-[linear-gradient(160deg,rgba(255,209,92,0.18),rgba(255,116,64,0.08),rgba(255,255,255,0.02))] p-5">
+            <div className="grid gap-4 rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur">
+              <div className="rounded-[1.5rem] border border-amber-300/20 bg-[linear-gradient(160deg,rgba(255,209,92,0.14),rgba(148,163,184,0.04),rgba(255,255,255,0.02))] p-5">
                 <p className="text-xs uppercase tracking-[0.35em] text-amber-200/80">Bilan global</p>
                 <div className="mt-4 flex items-end gap-4">
                   <p className={`text-5xl font-black sm:text-6xl ${totals.global.net >= 0 ? "text-emerald-300" : "text-rose-300"}`}>
@@ -570,19 +579,19 @@ export default function Home() {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,213,123,0.1),rgba(255,255,255,0.03))] p-4">
+                <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
                   <p className="text-xs uppercase tracking-[0.3em] text-stone-300/70">Freebets gagnés</p>
                   <p className="mt-2 text-2xl font-black text-white">{formatCurrency.format(totals.global.freebets)}</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,165,76,0.1),rgba(255,255,255,0.03))] p-4">
+                <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
                   <p className="text-xs uppercase tracking-[0.3em] text-stone-300/70">Valeur convertie</p>
                   <p className="mt-2 text-2xl font-black text-amber-200">{formatCurrency.format(totals.global.converted)}</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,98,54,0.1),rgba(255,255,255,0.03))] p-4">
+                <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
                   <p className="text-xs uppercase tracking-[0.3em] text-stone-300/70">Mises engagées</p>
                   <p className="mt-2 text-2xl font-black text-white">{formatCurrency.format(totals.global.stake)}</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(96,165,250,0.08),rgba(255,255,255,0.03))] p-4">
+                <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
                   <p className="text-xs uppercase tracking-[0.3em] text-stone-300/70">promos positives</p>
                   <p className="mt-2 text-2xl font-black text-white">
                     {formatInteger.format(totals.global.winningRows)} / {formatInteger.format(promos.length)}
@@ -593,7 +602,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,187,72,0.12),rgba(255,118,62,0.08),rgba(0,0,0,0.22))] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+        <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.35em] text-amber-200/80">Courbes du bilan</p>
@@ -634,7 +643,7 @@ export default function Home() {
                 dot: "#34d399",
               },
             ].map((item) => (
-              <article key={item.title} className="rounded-[1.6rem] border border-white/10 bg-[#0f0a09] p-4">
+              <article key={item.title} className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-4 backdrop-blur">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs uppercase tracking-[0.35em] text-amber-200/80">{item.title}</p>
@@ -646,27 +655,27 @@ export default function Home() {
                 </div>
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div className="rounded-[1.2rem] border border-white/10 bg-black/20 p-3">
                     <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Départ</p>
                     <p className="mt-1 text-lg font-black text-white">{formatCurrency.format(item.chart.startValue)}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div className="rounded-[1.2rem] border border-white/10 bg-black/20 p-3">
                     <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Fin</p>
                     <p className={`mt-1 text-lg font-black ${item.chart.endValue >= 0 ? "text-emerald-300" : "text-rose-300"}`}>
                       {formatCurrency.format(item.chart.endValue)}
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div className="rounded-[1.2rem] border border-white/10 bg-black/20 p-3">
                     <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Max</p>
                     <p className="mt-1 text-lg font-black text-amber-200">{formatCurrency.format(item.chart.maxValue)}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div className="rounded-[1.2rem] border border-white/10 bg-black/20 p-3">
                     <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Lignes</p>
                     <p className="mt-1 text-lg font-black text-white">{formatInteger.format(item.chart.activeRowsCount)}</p>
                   </div>
                 </div>
 
-                <div className="mt-4 overflow-hidden rounded-[1.2rem] border border-white/10 bg-[#090707] p-3">
+                <div className="mt-4 overflow-hidden rounded-[1.2rem] border border-white/10 bg-black/20 p-3">
                   <svg viewBox="0 0 1000 320" className="h-[300px] w-full" role="img" aria-label={`Courbe du bilan ${item.title.toLowerCase()}`}>
                     <defs>
                       <linearGradient id={`lineGradient-${item.title}`} x1="0" x2="1" y1="0" y2="0">
@@ -721,7 +730,7 @@ export default function Home() {
         <section className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <form
             onSubmit={handleSubmit}
-            className="rounded-[2rem] border border-white/10 bg-white/6 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)]"
+            className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl"
           >
             <div className="flex items-center justify-between gap-4">
               <div>
@@ -733,17 +742,17 @@ export default function Home() {
               </div>
             </div>
 
-              {promoError ? (
-                <div className="rounded-2xl border border-rose-300/30 bg-rose-300/10 px-4 py-3 text-sm text-rose-100">
-                  {promoError}
-                </div>
-              ) : null}
+            {promoError ? (
+              <div className="rounded-2xl border border-rose-300/30 bg-rose-300/10 px-4 py-3 text-sm text-rose-100">
+                {promoError}
+              </div>
+            ) : null}
 
-              {isLoadingPromos ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-stone-200/80">
-                  Chargement des paris enregistrés...
-                </div>
-              ) : null}
+            {isLoadingPromos ? (
+              <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-stone-200/80">
+                Chargement des paris enregistrés...
+              </div>
+            ) : null}
 
             <div className="mt-6 grid gap-4">
               <label className="grid gap-2 text-sm font-medium text-stone-100/85">
@@ -759,7 +768,7 @@ export default function Home() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="grid gap-2 text-sm font-medium text-stone-100/85 sm:col-span-2">
                   <span>Bookmaker</span>
-                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-6">
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
                     {BOOKMAKERS.map((bookmaker) => {
                       const selected = form.bookmaker === bookmaker;
 
@@ -768,10 +777,10 @@ export default function Home() {
                           key={bookmaker}
                           type="button"
                           onClick={() => handleBookmakerChange(bookmaker)}
-                          className={`flex min-h-[124px] flex-col items-center gap-2 rounded-3xl border px-3 py-3 text-center transition ${
+                          className={`flex min-h-[124px] flex-col items-center gap-2 rounded-[1.5rem] border px-3 py-3 text-center transition ${
                             selected
-                              ? "border-amber-300/60 bg-[linear-gradient(180deg,rgba(255,214,123,0.18),rgba(255,255,255,0.04))] text-white shadow-[0_0_0_1px_rgba(251,191,36,0.25)]"
-                              : "border-white/10 bg-black/25 text-stone-200 hover:border-white/20 hover:bg-white/8"
+                              ? "border-amber-300/60 bg-[linear-gradient(180deg,rgba(255,214,123,0.16),rgba(255,255,255,0.04))] text-white shadow-[0_0_0_1px_rgba(251,191,36,0.2)]"
+                              : "border-white/10 bg-black/20 text-stone-200 hover:border-white/20 hover:bg-white/[0.06]"
                           }`}
                         >
                           <BookmakerLogo bookmaker={bookmaker} className="h-14 w-14 sm:h-16 sm:w-16" />
@@ -787,7 +796,7 @@ export default function Home() {
                   <select
                     value={form.type}
                     onChange={(event) => handleTypeChange(event.target.value as PromoType)}
-                    className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
+                    className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
                   >
                     {Object.entries(promoTypeLabels).map(([value, label]) => (
                       <option key={value} value={value}>
@@ -804,7 +813,7 @@ export default function Home() {
                   <select
                     value={form.outcome}
                     onChange={(event) => updateForm("outcome", event.target.value as Outcome)}
-                    className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
+                    className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
                   >
                     <option value="gain">Pari gagné</option>
                     <option value="loss">Pari perdu</option>
@@ -820,7 +829,7 @@ export default function Home() {
                     step="any"
                     value={form.odds}
                     onChange={(event) => updateForm("odds", Number(event.target.value))}
-                    className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
+                    className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
                   />
                 </label>
               </div>
@@ -831,7 +840,7 @@ export default function Home() {
                   type="date"
                   value={form.date}
                   onChange={(event) => updateForm("date", event.target.value)}
-                  className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
+                  className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
                 />
               </label>
 
@@ -844,7 +853,7 @@ export default function Home() {
                     step="0.01"
                     value={form.stake}
                     onChange={(event) => updateForm("stake", Number(event.target.value))}
-                    className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
+                    className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
                   />
                 </label>
 
@@ -858,7 +867,7 @@ export default function Home() {
                       step="0.01"
                       value={form.cashbackRate}
                       onChange={(event) => updateForm("cashbackRate", Number(event.target.value))}
-                      className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
+                      className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
                     />
                   </label>
                 ) : (
@@ -870,7 +879,7 @@ export default function Home() {
                       step="0.01"
                       value={form.freebets}
                       onChange={(event) => updateForm("freebets", Number(event.target.value))}
-                      className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
+                      className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
                     />
                   </label>
                 )}
@@ -885,7 +894,7 @@ export default function Home() {
                     step="0.01"
                     value={form.cashbackCap}
                     onChange={(event) => updateForm("cashbackCap", Number(event.target.value))}
-                    className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
+                    className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300/60"
                   />
                 </label>
               ) : null}
@@ -901,17 +910,17 @@ export default function Home() {
                 />
               </label>
 
-              <button
+                <button
                 type="submit"
                 disabled={isSavingPromo}
-                className="rounded-2xl bg-[linear-gradient(135deg,#f59e0b,#fb7185)] px-5 py-3 text-sm font-black uppercase tracking-[0.25em] text-white shadow-[0_16px_35px_rgba(249,115,22,0.35)] transition hover:translate-y-[-1px]"
-              >
+                  className="rounded-2xl bg-[linear-gradient(135deg,#fbbf24,#fb7185)] px-5 py-3 text-sm font-black uppercase tracking-[0.25em] text-white shadow-[0_16px_35px_rgba(249,115,22,0.3)] transition hover:translate-y-[-1px]"
+                >
                 {isSavingPromo ? "Enregistrement..." : "Ajouter au bilan"}
               </button>
             </div>
           </form>
 
-          <section className="rounded-[2rem] border border-white/10 bg-black/20 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+          <section className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.35em] text-amber-200/80">Détail des lignes</p>
@@ -937,8 +946,8 @@ export default function Home() {
                   summary: totals.promosOnly,
                 },
               ].map((section) => (
-                <div key={section.title} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
-                  <div className="flex flex-col gap-3 rounded-[1.2rem] border border-white/10 bg-black/20 p-4 sm:flex-row sm:items-end sm:justify-between">
+                <div key={section.title} className="rounded-[1.5rem] border border-white/10 bg-black/15 p-4">
+                  <div className="flex flex-col gap-3 rounded-[1.2rem] border border-white/10 bg-white/[0.04] p-4 sm:flex-row sm:items-end sm:justify-between">
                     <div>
                       <p className="text-xs uppercase tracking-[0.32em] text-amber-200/80">{section.title}</p>
                       <h3 className="mt-2 text-xl font-black text-white">{section.description}</h3>
@@ -1047,12 +1056,12 @@ export default function Home() {
 
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {totals.byBookmaker.length === 0 ? (
-              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5 text-stone-300/80 md:col-span-2 xl:col-span-3">
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5 text-stone-300/80 md:col-span-2 xl:col-span-3">
                 Aucun bookmaker à afficher pour le moment.
               </div>
             ) : (
               totals.byBookmaker.map((entry) => (
-                <article key={entry.bookmaker} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
+                <article key={entry.bookmaker} className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-start gap-3">
                       <BookmakerLogo bookmaker={entry.bookmaker} className="h-11 w-11 shrink-0" />
